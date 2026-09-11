@@ -1,0 +1,88 @@
+@model IEnumerable<Lab1MVCApp_Sanchez.Models.Student>
+
+@{
+    ViewData["Title"] = "Student List";
+}
+
+<!-- Page Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 fw-bold mb-0">
+            <i class="bi bi-people-fill text-primary me-2"></i>Student List
+        </h1>
+        <p class="text-muted small mb-0">Integrative Programming &amp; Technologies — Lab Exercise #1</p>
+    </div>
+    <a asp-action="Create" class="btn btn-success d-flex align-items-center gap-2" id="btn-add-student">
+        <i class="bi bi-person-plus-fill"></i>
+        <span>+ Add Student</span>
+    </a>
+</div>
+
+<!-- Success Alert -->
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2 mb-3" role="alert">
+        <i class="bi bi-check-circle-fill"></i>
+        <span>@ViewBag.Message</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- Student Table Card -->
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover align-middle mb-0" id="student-table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" class="text-center" style="width:50px;">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Program</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col" class="text-center">Gender</th>
+                        <th scope="col">Mother's Name</th>
+                        <th scope="col">Father's Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td class="text-center fw-semibold">@student.Id</td>
+                            <td class="fw-medium">@student.Name</td>
+                            <td>
+                                <span class="badge bg-primary">@student.Program</span>
+                            </td>
+                            <td>
+                                <a href="mailto:@student.Email" class="text-decoration-none">
+                                    @student.Email
+                                </a>
+                            </td>
+                            <td>@student.Address</td>
+                            <td class="text-center">
+                                @if (student.Gender == "Female")
+                                {
+                                    <span class="badge bg-danger">@student.Gender</span>
+                                }
+                                else if (student.Gender == "Male")
+                                {
+                                    <span class="badge bg-info text-dark">@student.Gender</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">@student.Gender</span>
+                                }
+                            </td>
+                            <td>@student.MotherName</td>
+                            <td>@student.FatherName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-muted small text-end">
+        Total Students: <strong>@Model.Count()</strong>
+    </div>
+</div>
