@@ -1,0 +1,40 @@
+## .NET Core / ASP.NET Core
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.userprefs
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+out/
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Visual Studio
+.vscode/
+*.rsuser
+*.sln.docstates
+*.pidb
+*.polyvm
+
+## OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Logs
+*.log
