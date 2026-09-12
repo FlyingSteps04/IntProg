@@ -5,7 +5,7 @@ namespace Lab1MVCApp_Sanchez.Controllers
 {
     public class StudentController : Controller
     {
-        // In-memory student list — persists for the lifetime of the app session
+
         private static List<Student> _students = new List<Student>
         {
             new Student { Id=1, Name="Ana Reyes",      Program="BSCS",
@@ -26,7 +26,7 @@ namespace Lab1MVCApp_Sanchez.Controllers
                           Email="mark@email.com",  Address="Carcar City",   Gender="Male",   MotherName="Cita",  FatherName="Andres" },
         };
 
-        // GET: /Student or /Student/Index
+
         public IActionResult Index()
         {
             if (TempData["Message"] is string msg)
@@ -35,20 +35,20 @@ namespace Lab1MVCApp_Sanchez.Controllers
             return View(_students);
         }
 
-        // GET: /Student/Create  – displays the empty form
+
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: /Student/Create – handles form submission
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Student student)
         {
             if (ModelState.IsValid)
             {
-                // Add to in-memory list so it shows in the table
+
                 _students.Add(student);
 
                 TempData["Message"] = $"Student '{student.Name}' added successfully!";
